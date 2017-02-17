@@ -8,9 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		47FCDAC51E57A7D000B628DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAC41E57A7D000B628DA /* AppDelegate.swift */; };
-		47FCDAC71E57A7D000B628DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAC61E57A7D000B628DA /* ViewController.swift */; };
 		47FCDACC1E57A7D000B628DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FCDACB1E57A7D000B628DA /* Assets.xcassets */; };
 		47FCDACF1E57A7D000B628DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FCDACD1E57A7D000B628DA /* LaunchScreen.storyboard */; };
+		47FCDAD71E57B32400B628DA /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAD61E57B32400B628DA /* APIRequestManager.swift */; };
+		47FCDADB1E57B55100B628DA /* HomeAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDADA1E57B55100B628DA /* HomeAgainViewController.swift */; };
+		47FCDADE1E57B59000B628DA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDADD1E57B59000B628DA /* DetailViewController.swift */; };
+		47FCDAE01E57B7F600B628DA /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDADF1E57B7F600B628DA /* Library.swift */; };
+		47FCDAE31E57B81000B628DA /* HomeAgainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAE21E57B81000B628DA /* HomeAgainTableViewCell.swift */; };
+		47FCDAE61E57B82600B628DA /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAE51E57B82600B628DA /* DetailTableViewCell.swift */; };
+		47FCDAE81E57B84100B628DA /* DropInCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAE71E57B84100B628DA /* DropInCenter.swift */; };
+		47FCDAEA1E57B84C00B628DA /* JobCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAE91E57B84C00B628DA /* JobCenter.swift */; };
+		47FCDAEC1E57B85900B628DA /* FoodStampCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */; };
+		47FCDAEE1E57B8BB00B628DA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAED1E57B8BB00B628DA /* Utilities.swift */; };
 		C856A6A510E1B004B3205144 /* Pods_Home_Again.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147471F607978A0285FB62A4 /* Pods_Home_Again.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,10 +28,19 @@
 		2D6E15B5634E10A2833135D7 /* Pods-Home Again.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.debug.xcconfig"; sourceTree = "<group>"; };
 		47FCDAC11E57A7D000B628DA /* Home Again.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Again.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FCDAC41E57A7D000B628DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		47FCDAC61E57A7D000B628DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		47FCDACB1E57A7D000B628DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		47FCDACE1E57A7D000B628DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		47FCDAD01E57A7D000B628DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47FCDAD61E57B32400B628DA /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		47FCDADA1E57B55100B628DA /* HomeAgainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAgainViewController.swift; sourceTree = "<group>"; };
+		47FCDADD1E57B59000B628DA /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		47FCDADF1E57B7F600B628DA /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		47FCDAE21E57B81000B628DA /* HomeAgainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeAgainTableViewCell.swift; sourceTree = "<group>"; };
+		47FCDAE51E57B82600B628DA /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		47FCDAE71E57B84100B628DA /* DropInCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropInCenter.swift; sourceTree = "<group>"; };
+		47FCDAE91E57B84C00B628DA /* JobCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCenter.swift; sourceTree = "<group>"; };
+		47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodStampCenter.swift; sourceTree = "<group>"; };
+		47FCDAED1E57B8BB00B628DA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		66456526FB20F69D425A48B0 /* Pods-Home Again.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,13 +77,62 @@
 		47FCDAC31E57A7D000B628DA /* Home Again */ = {
 			isa = PBXGroup;
 			children = (
+				47FCDAD91E57B42600B628DA /* Managers */,
+				47FCDADC1E57B55500B628DA /* View Controllers */,
+				47FCDAE41E57B81400B628DA /* Views */,
+				47FCDAE11E57B7FA00B628DA /* Models */,
+				47FCDAD81E57B33200B628DA /* Supporting Files */,
+			);
+			path = "Home Again";
+			sourceTree = "<group>";
+		};
+		47FCDAD81E57B33200B628DA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				47FCDAED1E57B8BB00B628DA /* Utilities.swift */,
 				47FCDAC41E57A7D000B628DA /* AppDelegate.swift */,
-				47FCDAC61E57A7D000B628DA /* ViewController.swift */,
 				47FCDACB1E57A7D000B628DA /* Assets.xcassets */,
 				47FCDACD1E57A7D000B628DA /* LaunchScreen.storyboard */,
 				47FCDAD01E57A7D000B628DA /* Info.plist */,
 			);
-			path = "Home Again";
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		47FCDAD91E57B42600B628DA /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				47FCDAD61E57B32400B628DA /* APIRequestManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		47FCDADC1E57B55500B628DA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				47FCDADA1E57B55100B628DA /* HomeAgainViewController.swift */,
+				47FCDADD1E57B59000B628DA /* DetailViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		47FCDAE11E57B7FA00B628DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				47FCDADF1E57B7F600B628DA /* Library.swift */,
+				47FCDAE71E57B84100B628DA /* DropInCenter.swift */,
+				47FCDAE91E57B84C00B628DA /* JobCenter.swift */,
+				47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		47FCDAE41E57B81400B628DA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				47FCDAE21E57B81000B628DA /* HomeAgainTableViewCell.swift */,
+				47FCDAE51E57B82600B628DA /* DetailTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		5A3F7F7680633B3F6FC29C32 /* Pods */ = {
@@ -207,8 +274,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47FCDAC71E57A7D000B628DA /* ViewController.swift in Sources */,
+				47FCDAD71E57B32400B628DA /* APIRequestManager.swift in Sources */,
 				47FCDAC51E57A7D000B628DA /* AppDelegate.swift in Sources */,
+				47FCDAEE1E57B8BB00B628DA /* Utilities.swift in Sources */,
+				47FCDAE81E57B84100B628DA /* DropInCenter.swift in Sources */,
+				47FCDAE61E57B82600B628DA /* DetailTableViewCell.swift in Sources */,
+				47FCDAE01E57B7F600B628DA /* Library.swift in Sources */,
+				47FCDADB1E57B55100B628DA /* HomeAgainViewController.swift in Sources */,
+				47FCDAEA1E57B84C00B628DA /* JobCenter.swift in Sources */,
+				47FCDADE1E57B59000B628DA /* DetailViewController.swift in Sources */,
+				47FCDAEC1E57B85900B628DA /* FoodStampCenter.swift in Sources */,
+				47FCDAE31E57B81000B628DA /* HomeAgainTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +440,7 @@
 				47FCDAD51E57A7D000B628DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
