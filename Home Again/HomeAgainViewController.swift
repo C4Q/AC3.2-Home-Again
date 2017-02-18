@@ -73,7 +73,8 @@ class HomeAgainViewController: UITableViewController, CellTitled {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.titleForCell = Resource.sections[indexPath.section]
-        detailVC.resource = Resource(rawValue: Resource.sections[indexPath.section])
+        detailVC.resource = Resource(rawValue: Resource.sections[indexPath.section])!
+        detailVC.endpoint = Resource.getEndPoint(Resource.sections[indexPath.section])
         
         navigationController?.pushViewController(detailVC, animated: true)
         let backItem = UIBarButtonItem()

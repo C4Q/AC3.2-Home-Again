@@ -15,17 +15,17 @@ struct JobCenter {
     let facilityName: String
     let phoneNumber: String
     let state: String
-    let streetAddress: String
+    let facilityAddress: String
     let zipCode: String
     
     init (borough: String,  city: String, facilityName: String, phoneNumber: String, state: String,
-          streetAddress: String, zipCode: String) {
+          facilityAddress: String, zipCode: String) {
         self.borough = borough
         self.city = city
         self.facilityName = facilityName
         self.phoneNumber = phoneNumber
         self.state = state
-        self.streetAddress = streetAddress
+        self.facilityAddress = facilityAddress
         self.zipCode = zipCode
     }
     
@@ -38,23 +38,23 @@ struct JobCenter {
             let streetAddress = dictionary["street_address"] as? String,
             let zipCode = dictionary["zip_code"] as? String else {return nil}
         
-        self.init(borough: borough, city: city, facilityName: facilityName, phoneNumber: phoneNumber, state: state, streetAddress: streetAddress, zipCode: zipCode)
+        self.init(borough: borough, city: city, facilityName: facilityName, phoneNumber: phoneNumber, state: state, facilityAddress: streetAddress, zipCode: zipCode)
     }
     
-    static func buildJobArray(from data: Data) -> [JobCenter]? {
-        var jobArray: [JobCenter] = []
+    static func getJobCenters(from data: Data) -> [JobCenter] {
+        var jobCenters: [JobCenter] = []
         
         do {
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-            guard let jsonArray = jsonData as? [[String: Any]] else {return nil}
+            guard let jsonArray = jsonData as? [[String: Any]] else { return [] }
             
             for dictionary in jsonArray {
-                guard let jobDictionary = JobCenter(dictionary: dictionary) else {continue}
-                jobArray.append(jobDictionary)
+                guard let jobDictionary = JobCenter(dictionary: dictionary) else { continue }
+                jobCenters.append(jobDictionary)
             }
         } catch {
             print("problem parsing json: \(error)")
         }
-        return jobArray
+        return jobCenters
     }
 }
