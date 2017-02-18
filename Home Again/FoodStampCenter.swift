@@ -12,18 +12,18 @@ struct FoodStamp {
     
     var borough: String
     var city: String
-    var facility_name: String
-    var phone_number_s_: String
+    var facilityName: String
+    var phoneNumber: String
     var state: String
-    var street_address: String
-    var zip_code: String
+    var facilityAddress: String
+    var zipCode: String
     
-    static func getFoodStamps(from data: Data) -> [FoodStamp]? {
+    static func getFoodStamps(from data: Data) -> [FoodStamp] {
         
         do {
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
             
-            guard let dict = jsonData as? [[String: String]] else { return nil }
+            guard let dict = jsonData as? [[String: String]] else { return [] }
             
             var foodStamps: [FoodStamp] = []
             
@@ -34,27 +34,26 @@ struct FoodStamp {
                     let phoneNo = eachData["phone_number_s_"],
                     let state = eachData["state"],
                     let address = eachData["street_address"],
-                    let zipCode = eachData["zip_code"] else { return nil}
+                    let zipCode = eachData["zip_code"] else { continue }
                 
                 let validFoodStamp = FoodStamp(borough: boro,
-                                        city: city,
-                                        facility_name: facility,
-                                        phone_number_s_: phoneNo,
-                                        state: state,
-                                        street_address: address,
-                                        zip_code: zipCode)
+                                               city: city,
+                                               facilityName: facility,
+                                               phoneNumber: phoneNo,
+                                               state: state,
+                                               facilityAddress: address,
+                                               zipCode: zipCode)
                 
                     foodStamps.append(validFoodStamp)
             }
             
             return foodStamps
-
           
-        }catch{
+        }
+        catch {
             print("error")
         }
-        
-     return nil
+     return []
     }
     
     
