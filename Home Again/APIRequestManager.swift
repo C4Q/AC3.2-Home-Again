@@ -13,6 +13,8 @@ class APIRequestManager {
     static let manager = APIRequestManager()
     private init() {}
     
+    let endPoint = "https://data.cityofnewyork.us/resource/ma86-m5w3.json"
+    
     func getData(endPoint: String, callback: @escaping (Data?) -> Void) {
         
         guard let myURL = URL(string: endPoint) else { return }
