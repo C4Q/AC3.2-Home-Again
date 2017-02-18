@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "47FCDAC01E57A7D000B628DA"
-               BuildableName = "Home Again.app"
-               BlueprintName = "Home Again"
-               ReferencedContainer = "container:Home Again.xcodeproj">
+               BlueprintIdentifier = "E5426BC032959DBE06882AD6C2994E68"
+               BuildableName = "Pods_Home_Again.framework"
+               BlueprintName = "Pods-Home Again"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "47FCDAC01E57A7D000B628DA"
-            BuildableName = "Home Again.app"
-            BlueprintName = "Home Again"
-            ReferencedContainer = "container:Home Again.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,23 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "47FCDAC01E57A7D000B628DA"
-            BuildableName = "Home Again.app"
-            BlueprintName = "Home Again"
-            ReferencedContainer = "container:Home Again.xcodeproj">
+            BlueprintIdentifier = "E5426BC032959DBE06882AD6C2994E68"
+            BuildableName = "Pods_Home_Again.framework"
+            BlueprintName = "Pods-Home Again"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -77,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "47FCDAC01E57A7D000B628DA"
-            BuildableName = "Home Again.app"
-            BlueprintName = "Home Again"
-            ReferencedContainer = "container:Home Again.xcodeproj">
+            BlueprintIdentifier = "E5426BC032959DBE06882AD6C2994E68"
+            BuildableName = "Pods_Home_Again.framework"
+            BlueprintName = "Pods-Home Again"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

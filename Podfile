@@ -7,5 +7,7 @@ target 'Home Again' do
 
   # Pods for Home Again
   pod ‘SnapKit’
+  pod ‘GoogleMaps’
+  pod ‘GooglePlaces’
 
 end
