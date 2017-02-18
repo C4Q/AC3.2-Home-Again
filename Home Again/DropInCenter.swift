@@ -8,17 +8,9 @@
 
 import Foundation
 
-
-/*
- "borough": "Manhattan",
- "center_name": "Mainchance",
- "comments": "Open 24 hours",
- "location_1_location": "120 East 32nd Street"
- 
- */
-
-
 struct DropInCenter {
+    
+    var dropInCenterEndpoint: String = "https://data.cityofnewyork.us/resource/kjtk-8yxq.json"
     
     let borough: String
     let centerName: String

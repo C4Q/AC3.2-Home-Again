@@ -48,23 +48,15 @@ struct JobCenter {
         
         do {
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-            // Remember Gabriel you are returning nil because if the Json is not an array of dictionary then my parasing won't do shit for it so I don't want it
             guard let jsonArray = jsonData as? [[String: Any]] else {return nil}
             
             for dictionary in jsonArray {
-                
                 guard let jobDictionary = JobCenter(dictionary: dictionary) else {continue}
-                // I continue here because if I get a dictionary that doesn't meet my model then I want the function to keep running and build an elementArray. However what if i want a model built with a nil value?
                 jobArray.append(jobDictionary)
-                // dump(jobArray)
             }
-            
         } catch {
             print("problem parsing json: \(error)")
         }
-        
         return jobArray
-    }// end of func
-    
-    
+    }
 }
