@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import SnapKit
 import GoogleMaps
 import GooglePlaces
@@ -18,7 +19,9 @@ class DetailViewController: UIViewController, CellTitled {
     var currentLocation: CLLocation?
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
-    var zoomLevel: Float = 15.0
+    private var zoomLevel: Float = 15.0
+    private var currentPositionMarker = GMSMarker()
+    
     var titleForCell: String = ""
     var resource: Resource!
     
@@ -37,9 +40,6 @@ class DetailViewController: UIViewController, CellTitled {
                                               longitude: 151.2086,
                                               zoom: 14)
         self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-
-        
-        mapView.isMyLocationEnabled = true
         
         let marker = GMSMarker()
         marker.position = camera.target
@@ -55,7 +55,7 @@ class DetailViewController: UIViewController, CellTitled {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        test()
+        test()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,13 +76,20 @@ class DetailViewController: UIViewController, CellTitled {
     func configureConstraints() {
         mapView.snp.makeConstraints { (make) in
             make.leading.top.trailing.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.height.equalToSuperview().multipliedBy(0.0)
         }
         
         tableView.snp.makeConstraints { (make) in
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.height.equalToSuperview().multipliedBy(1.0)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    func updateCurrentPositionMarker(currentLocation: CLLocation) {
+        self.currentPositionMarker.map = nil
+        self.currentPositionMarker = GMSMarker(position: currentLocation.coordinate)
+        self.currentPositionMarker.icon = GMSMarker.markerImage(with: UIColor.cyan)
+        self.currentPositionMarker.map = self.mapView
     }
     
     func test() {
@@ -110,24 +117,31 @@ extension DetailViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        test()
-        let location: CLLocation = locations.last!
-        print("Location: \(location)")
-        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-                                              longitude: location.coordinate.longitude,
-                                              zoom: zoomLevel)
+        if let location = locations.first {
+            
+            // 7
+//            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+            
+            // 8
+//            locationManager.stopUpdatingLocation()
+            updateCurrentPositionMarker(currentLocation: location)
+        }
+        
+//        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+//                                              longitude: location.coordinate.longitude,
+//                                              zoom: zoomLevel)
         
 //        if (self.view as! GMSMapView).isHidden {
 //            
 //        }
         
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
-        } else {
-            mapView.animate(to: camera)
-        }
-        
+//        if mapView.isHidden {
+//            mapView.isHidden = false
+//            mapView.camera = camera
+//        } else {
+//            mapView.animate(to: camera)
+//        }
+//        
 //        listLikelyPlaces()
     }
     
@@ -145,6 +159,8 @@ extension DetailViewController: CLLocationManagerDelegate {
         case .authorizedAlways: fallthrough
         case .authorizedWhenInUse:
             print("Location status is OK.")
+            mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
         }
     }
     
