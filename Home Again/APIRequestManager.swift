@@ -9,6 +9,7 @@
 import Foundation
 
 class APIRequestManager {
+    
     static let manager = APIRequestManager()
     private init() {}
     
@@ -28,4 +29,5 @@ class APIRequestManager {
             callback(validData)
             }.resume()
     }
+    
 }
