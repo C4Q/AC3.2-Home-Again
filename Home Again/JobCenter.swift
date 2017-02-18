@@ -8,8 +8,6 @@
 
 import Foundation
 
-var jobCenterEndpoint: String = "https://data.cityofnewyork.us/resource/9ri9-nbz5.json"
-
 struct JobCenter {
     
     let borough: String
