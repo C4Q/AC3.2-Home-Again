@@ -63,12 +63,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         view.addSubview(mapView)
         view.addSubview(tableView)
+        view.addSubview(backToTable)
+        backToTable.addSubview(backToImage)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
         animator = UIViewPropertyAnimator(duration: 2.0, dampingRatio: 0.75, animations: nil)
+        
+        backToTable.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bringBackTable)))
+        backToImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bringBackTable)))
     }
     
     func configureConstraints() {
@@ -81,6 +86,16 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.snp.makeConstraints { (make) in
             make.height.equalToSuperview().multipliedBy(1.0)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        backToTable.snp.makeConstraints { (make) in
+            make.height.width.equalTo(50.0)
+            make.leading.bottom.equalToSuperview().inset(16.0)
+        }
+        
+        backToImage.snp.makeConstraints { (make) in
+            make.height.width.equalTo(backToTable).multipliedBy(0.5)
+            make.center.equalTo(backToTable)
         }
     }
     
@@ -118,12 +133,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                               longitude: -73.935365,
                                               zoom: 18)
         self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-        
-//        let marker = GMSMarker()
-//        marker.position = camera.target
-//        marker.snippet = "Hello World"
-//        marker.appearAnimation = GMSMarkerAnimation.pop
-//        marker.map = mapView
+
     }
     
     func updateCurrentPositionMarker(currentLocation: CLLocation) {
@@ -172,9 +182,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityAddress
             }
         
-        cell.contentView.backgroundColor = ColorPalette.lightestBlue
+        cell.contentView.backgroundColor = ColorPalette.darkBlue
         
-        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 90))
+        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 8, width: self.view.frame.size.width - 20, height: 85))
         
         whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.8])
         whiteRoundedView.layer.masksToBounds = false
@@ -204,7 +214,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let _ = cell.facilityAddress
         
         animator?.addAnimations ({
-            tableView.snp.remakeConstraints({ (make) in
+            self.backToTable.alpha = 1.0
+        })
+        
+        animator?.addAnimations ({
+            self.tableView.snp.remakeConstraints({ (make) in
                 make.top.lessThanOrEqualTo(self.view.snp.bottom)
                 make.height.width.centerX.equalToSuperview()
             })
@@ -212,9 +226,32 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.mapView.snp.remakeConstraints({ (make) in
                 make.leading.top.trailing.bottom.equalToSuperview()
             })
+            
             self.view.layoutIfNeeded()
         })
         animator?.startAnimation()
+    }
+    
+    // MARK: - Actions
+    func bringBackTable() {
+        animator?.addAnimations ({
+            self.backToTable.alpha = 0.0
+        })
+        
+        animator?.addAnimations ({
+            self.mapView.snp.remakeConstraints { (make) in
+                make.leading.top.trailing.equalToSuperview()
+                make.height.equalToSuperview().multipliedBy(0.0)
+            }
+            
+            self.tableView.snp.remakeConstraints { (make) in
+                make.height.equalToSuperview().multipliedBy(1.0)
+                make.leading.trailing.bottom.equalToSuperview()
+            }
+            self.view.layoutIfNeeded()
+        })
+        animator?.startAnimation()
+
     }
     
     // MARK: - Lazy Instantiate
@@ -227,6 +264,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return table
     }()
 
+    lazy var backToTable: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 25.0
+        view.layer.masksToBounds = true
+        view.alpha = 0.0
+        view.backgroundColor = .white
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
+    lazy var backToImage: UIImageView = {
+       let image = UIImageView()
+        image.image = #imageLiteral(resourceName: "Double Up-64")
+        image.contentMode = .scaleAspectFit
+        image.backgroundColor = .clear
+        return image
+    }()
 }
 
 // MARK: - Delegates to handle events for the location manager.
@@ -234,35 +288,11 @@ extension DetailViewController: CLLocationManagerDelegate {
     
     // Handle incoming location events.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if let location = locations.first {
-            print(location)
-            // 7
-//            mapView.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            
-            // 8
-            if let test = mapView.myLocation {
-            updateCurrentPositionMarker(currentLocation: test)
+            updateCurrentPositionMarker(currentLocation: location)
             locationManager.stopUpdatingLocation()
-            }
-            
         }
-        
-//        let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
-//                                              longitude: location.coordinate.longitude,
-//                                              zoom: zoomLevel)
-        
-//        if (self.view as! GMSMapView).isHidden {
-//            
-//        }
-        
-//        if mapView.isHidden {
-//            mapView.isHidden = false
-//            mapView.camera = camera
-//        } else {
-//            mapView.animate(to: camera)
-//        }
-//        
-//        listLikelyPlaces()
     }
     
     // Handle authorization for the location manager.
