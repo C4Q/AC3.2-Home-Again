@@ -37,9 +37,11 @@ class HomeAgainTableViewCell: UITableViewCell {
         // Customize overlay
         sectionImage.contentMode = .scaleAspectFill
         
-        sectionOverlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.2)
+        sectionOverlay.backgroundColor = ColorPalette.darkestBlue
+        sectionOverlay.alpha = 0.5
         
         sectionLabel.textAlignment = .center
+        sectionLabel.font = UIFont.systemFont(ofSize: 24.0)
         sectionLabel.textColor = ColorPalette.textIconColor
         sectionLabel.layer.borderColor = ColorPalette.textIconColor.cgColor
         sectionLabel.layer.borderWidth = 3.0
@@ -58,8 +60,8 @@ class HomeAgainTableViewCell: UITableViewCell {
     // MARK: - Cell Setup
     internal func setHierarchyAndConstraintsOf(image: UIImageView, label: UILabel, overlay: UIView, to cell: UIView) {
         cell.addSubview(image)
-        cell.addSubview(label)
         cell.addSubview(overlay)
+        cell.addSubview(label)
         
         image.snp.makeConstraints { (make) in
             make.leading.top.trailing.bottom.equalToSuperview()

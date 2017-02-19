@@ -13,11 +13,13 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - Properties
     let titleForCell = "Home Again"
     let cellIdentifier: String = "HomeCellIdentifier"
+    let crisisNumber = "18886929355"
 
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = ColorPalette.darkBlue
         setupViewHierarchy()
         tableView.dataSource = self
         tableView.delegate = self
@@ -44,11 +46,13 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         
         navigationController?.navigationBar.backgroundColor = ColorPalette.darkestBlue
         navigationController?.navigationBar.barTintColor = ColorPalette.darkestBlue
-        self.view.backgroundColor = ColorPalette.darkBlue
         
         view.addSubview(tableView)
         view.addSubview(crisisView)
         crisisView.addSubview(crisisLabel)
+        crisisView.addSubview(crisisButton)
+        
+        crisisButton.addTarget(self, action: #selector(crisisTapped), for: .touchUpInside)
     }
     
     func configureConstraints() {
@@ -59,12 +63,19 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         
         crisisView.snp.makeConstraints { (make) in
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(100.0)
+            make.height.equalTo(80.0)
         }
         
         crisisLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(crisisView)
             make.leading.equalTo(crisisView).offset(16.0)
+        }
+        
+        crisisButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(crisisView)
+            make.trailing.equalTo(crisisView).inset(16.0)
+            make.height.equalTo(crisisView).multipliedBy(0.5)
+            make.width.equalTo(crisisView).multipliedBy(0.5)
         }
     }
     
@@ -82,18 +93,18 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         
         switch indexPath.section {
         case 0:
-//            cell.sectionImage.image = #imageLiteral(resourceName: "woofmeow")
+            cell.sectionImage.image = #imageLiteral(resourceName: "Home_Again_SHELTERS")
             cell.sectionLabel.text = "Drop-In Shelters"
         case 1:
-//            cell.sectionImage.image = #imageLiteral(resourceName: "nature")
+            cell.sectionImage.image = #imageLiteral(resourceName: "Home_Again_FOOD_STAMPS")
             cell.sectionLabel.text = "Food Stamps"
         case 2:
-//            cell.sectionImage.image =
+            cell.sectionImage.image = #imageLiteral(resourceName: "Home_Again_JOB_CENTERS")
             cell.sectionLabel.text = "Job Centers"
         default:
-            cell.sectionLabel.text = "Libraries"
+            cell.sectionImage.image = #imageLiteral(resourceName: "Home_Again_INTERNET")
+            cell.sectionLabel.text = "Internet"
         }
-        cell.backgroundColor = .black
 
         cell.selectionStyle = .none
         return cell
@@ -107,13 +118,20 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         
         navigationController?.pushViewController(detailVC, animated: true)
         let backItem = UIBarButtonItem()
-        backItem.title = "HOME"
+        backItem.title = ""
         navigationItem.backBarButtonItem = backItem
     }
 
+    // MARK: - Actions
+    func crisisTapped() {
+        guard let number = URL(string: "telprompt://" + crisisNumber) else { return }
+        UIApplication.shared.open(number, options: [:], completionHandler: nil)
+    }
+    
     // MARK: - Lazy Instantiate
     lazy var tableView: UITableView = {
         let table = UITableView()
+        table.backgroundColor = ColorPalette.darkestBlue
         return table
     }()
     
@@ -129,20 +147,40 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         let label = UILabel()
         label.numberOfLines = 3
         
-        let myAttribute = [ NSFontAttributeName: UIFont.systemFont(ofSize: 18.0),
+        let myAttribute = [ NSFontAttributeName: UIFont.systemFont(ofSize: 16.0),
                             NSForegroundColorAttributeName: UIColor.gray]
         
         let myString = NSMutableAttributedString(string: "In CRISIS?\nPress Button to talk\nto a counselor now.", attributes: myAttribute )
         
-        var buttonRange = (myString.string as NSString).range(of: "CRISIS?")
+        var buttonRange = (myString.string as NSString).range(of: "In CRISIS?")
+        myString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 18.0), range: buttonRange)
+        
+        buttonRange = (myString.string as NSString).range(of: "CRISIS?")
         myString.addAttribute(NSFontAttributeName, value: UIFont.italicSystemFont(ofSize: 18.0), range: buttonRange)
         
         buttonRange = (myString.string as NSString).range(of: "Press Button")
         myString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: buttonRange)
+        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 16.0), range: buttonRange)
         
         label.attributedText = myString
         
         return label
     }()
+    
+    lazy var crisisButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 7.0
+        
+        let darkRed = UIColor(red: 158/255, green: 9/255, blue: 28/255, alpha: 1.0)
 
+        let myAttribute = [ NSForegroundColorAttributeName: darkRed ]
+        let myString = NSMutableAttributedString(string: "1-888-NYC-WELL (free)", attributes: myAttribute)
+        
+        var buttonRange = (myString.string as NSString).range(of: "1-888-NYC-WELL")
+        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 18.0), range: buttonRange)
+        
+        button.setAttributedTitle(myString, for: .normal)
+        return button
+    }()
 }

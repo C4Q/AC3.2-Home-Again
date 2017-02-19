@@ -60,7 +60,7 @@ public enum Resource: String {
         case "Job Centers":
             return "https://data.cityofnewyork.us/resource/9ri9-nbz5.json"
         default:
-            return ""
+            return "https://data.cityofnewyork.us/resource/feuq-due4.json"
         }
     }
     

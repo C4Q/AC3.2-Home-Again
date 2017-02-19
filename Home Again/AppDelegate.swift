@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let navVC = UINavigationController(rootViewController: HomeAgainViewController())
@@ -29,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey("AIzaSyDjgXR1DRTaTEy_1zSmLFg1uunVp3HWYMg")
         GMSPlacesClient.provideAPIKey("AIzaSyDjgXR1DRTaTEy_1zSmLFg1uunVp3HWYMg")
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         
         return true
     }
