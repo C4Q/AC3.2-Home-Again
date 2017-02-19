@@ -14,6 +14,7 @@ protocol CellTitled {
     var titleForCell: String { get }
 }
 
+// Model Objects
 protocol ResourcesTable {
     var borough: String { get }
     var facilityName: String { get }
