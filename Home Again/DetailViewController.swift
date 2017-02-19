@@ -139,7 +139,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func updateCurrentPositionMarker(currentLocation: CLLocation) {
         currentPositionMarker.map = nil
         currentPositionMarker = GMSMarker(position: currentLocation.coordinate)
-        currentPositionMarker.icon = GMSMarker.markerImage(with: .cyan)
+        currentPositionMarker.icon = GMSMarker.markerImage(with: .purple)
         currentPositionMarker.appearAnimation = .pop
         currentPositionMarker.snippet = "You are here"
         currentPositionMarker.map = self.mapView
@@ -210,16 +210,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! DetailTableViewCell
         
-        var address = ""
-        
-        if let characters = cell.facilityAddress.text {
-            for i in characters.characters {
-                if i == "," { break }
-                address.append(i)
-            }
-        }
-        guard let ad = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        
+        // Animate Map
         animator?.addAnimations ({
             self.backToTable.alpha = 1.0
         })
@@ -237,6 +228,17 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.view.layoutIfNeeded()
         })
         animator?.startAnimation()
+        
+        // Pin markers on selected facility
+        var address = ""
+        
+        if let characters = cell.facilityAddress.text {
+            for i in characters.characters {
+                if i == "," { break }
+                address.append(i)
+            }
+        }
+        guard let ad = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
         APIRequestManager.manager.getData(endPoint: "https://api.cityofnewyork.us/geoclient/v1/search.json?app_id=9f38ae63&app_key=cd84b648110b8ee65df34f449aee7c1e&input=\(ad)") { (data) in
             
@@ -256,7 +258,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude,
                                                                        longitude: longitude,
                                                                        zoom: 18)
-                        self.updateCurrentPositionMarker(currentLocation: CLLocation(latitude: latitude, longitude: longitude))
+                        
+                        let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                        let marker = GMSMarker(position: position)
+                        marker.appearAnimation = .pop
+                        marker.icon = GMSMarker.markerImage(with: .cyan)
+                        marker.title = "\(cell.facilityName)"
+                        marker.map = self.mapView
                     }
                 }
             }
