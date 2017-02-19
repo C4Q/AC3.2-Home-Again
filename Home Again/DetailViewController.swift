@@ -58,7 +58,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setupViewHierarchy() {
         self.edgesForExtendedLayout = []
         
-        self.navigationController?.navigationBar.tintColor = ColorPalette.textIconColor
+        self.navigationController?.navigationBar.tintColor = ColorPalette.lightestBlue
         self.title = titleForCell
         
         view.addSubview(mapView)
@@ -110,8 +110,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.resources = DropInCenter.getDropInCenters(from: data)
             case .foodstamp:
                 self.resources = FoodStamp.getFoodStamps(from: data)
-            default:
+            case .jobs:
                 self.resources = JobCenter.getJobCenters(from: data)
+            default:
+                self.resources = Library.getLibraries(from: data)
             }
             
             DispatchQueue.main.async {
@@ -225,6 +227,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 make.leading.top.trailing.bottom.equalToSuperview()
             })
             
+            if let address = cell.facilityAddress.text {
+                self.title = address
+            }
+            
             self.view.layoutIfNeeded()
         })
         animator?.startAnimation()
@@ -263,7 +269,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         let marker = GMSMarker(position: position)
                         marker.appearAnimation = .pop
                         marker.icon = GMSMarker.markerImage(with: .cyan)
-                        marker.title = "\(cell.facilityName)"
+                        if let name = cell.facilityName.text {
+                            marker.title = name
+                        }
                         marker.map = self.mapView
                     }
                 }
@@ -290,6 +298,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 make.height.equalToSuperview().multipliedBy(1.0)
                 make.leading.trailing.bottom.equalToSuperview()
             }
+            self.title = self.titleForCell
             self.view.layoutIfNeeded()
         })
         animator?.startAnimation()
@@ -299,7 +308,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Lazy Instantiate
     lazy var tableView: UITableView = {
         let table = UITableView()
-        table.backgroundColor = ColorPalette.midBlue
+        table.backgroundColor = ColorPalette.darkBlue
         table.alpha = 1.0
         table.estimatedRowHeight = 200.0
         table.rowHeight = UITableViewAutomaticDimension
@@ -311,7 +320,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.layer.cornerRadius = 25.0
         view.layer.masksToBounds = true
         view.alpha = 0.0
-        view.backgroundColor = .white
+        view.backgroundColor = ColorPalette.lightestBlue
         view.isUserInteractionEnabled = true
         return view
     }()
