@@ -13,7 +13,7 @@ import GoogleMaps
 import GooglePlaces
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CellTitled {
-
+    
     // MARK: - Properties
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -33,7 +33,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // API Call
         getData()
         // Google Maps Setup
@@ -41,14 +41,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         setupViewHierarchy()
         configureConstraints()
-
+        
         placesClient = GMSPlacesClient.shared()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -133,7 +133,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                               longitude: -73.935365,
                                               zoom: 18)
         self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-
+        
     }
     
     func updateCurrentPositionMarker(currentLocation: CLLocation) {
@@ -151,36 +151,35 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         let borough = Resource.boroughs[section]
         
         return resources.filter { $0.borough == borough }.count
         
         
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DetailTableViewCell
-
+        
         //TODO: - DISTANCE
-            
-            switch indexPath.section {
-            case 0:
-                cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[0] }[indexPath.row].facilityName
-                cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[0] }[indexPath.row].facilityAddress
-            case 1:
-                cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[1] }[indexPath.row].facilityName
-                cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[1] }[indexPath.row].facilityAddress
-            case 2:
-                cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[2] }[indexPath.row].facilityName
-                cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[2] }[indexPath.row].facilityAddress
-            case 3:
-                cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[3] }[indexPath.row].facilityName
-                cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[3] }[indexPath.row].facilityAddress
-            default:
-                cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityName
-                cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityAddress
-            }
+        switch indexPath.section {
+        case 0:
+            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[0] }[indexPath.row].facilityName
+            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[0] }[indexPath.row].facilityAddress
+        case 1:
+            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[1] }[indexPath.row].facilityName
+            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[1] }[indexPath.row].facilityAddress
+        case 2:
+            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[2] }[indexPath.row].facilityName
+            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[2] }[indexPath.row].facilityAddress
+        case 3:
+            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[3] }[indexPath.row].facilityName
+            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[3] }[indexPath.row].facilityAddress
+        default:
+            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityName
+            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityAddress
+        }
         
         cell.contentView.backgroundColor = ColorPalette.darkBlue
         
@@ -211,7 +210,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! DetailTableViewCell
         
-        let _ = cell.facilityAddress
+        var address = ""
+        
+        if let characters = cell.facilityAddress.text {
+            for i in characters.characters {
+                if i == "," { break }
+                address.append(i)
+            }
+        }
+        guard let ad = address.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
         animator?.addAnimations ({
             self.backToTable.alpha = 1.0
@@ -230,6 +237,33 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.view.layoutIfNeeded()
         })
         animator?.startAnimation()
+        
+        APIRequestManager.manager.getData(endPoint: "https://api.cityofnewyork.us/geoclient/v1/search.json?app_id=9f38ae63&app_key=cd84b648110b8ee65df34f449aee7c1e&input=\(ad)") { (data) in
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
+                
+                if let jsonArray = jsonData as? [String: Any],
+                    let results = jsonArray["results"] as? [[String: Any]],
+                    let response = results[0]["response"] as? [String: Any] {
+                    
+                    guard let latitude = response["latitude"] as? Double,
+                        let longitude = response["longitude"] as? Double else { return }
+                    
+                    DispatchQueue.main.async {
+                        self.mapView.camera = GMSCameraPosition.camera(withLatitude: latitude,
+                                                                       longitude: longitude,
+                                                                       zoom: 18)
+                        self.updateCurrentPositionMarker(currentLocation: CLLocation(latitude: latitude, longitude: longitude))
+                    }
+                }
+            }
+            catch {
+                print(error)
+            }
+        }
     }
     
     // MARK: - Actions
@@ -251,7 +285,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.view.layoutIfNeeded()
         })
         animator?.startAnimation()
-
+        
     }
     
     // MARK: - Lazy Instantiate
@@ -263,7 +297,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         table.rowHeight = UITableViewAutomaticDimension
         return table
     }()
-
+    
     lazy var backToTable: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 25.0
@@ -275,7 +309,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }()
     
     lazy var backToImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = #imageLiteral(resourceName: "Double Up-64")
         image.contentMode = .scaleAspectFit
         image.backgroundColor = .clear
@@ -316,7 +350,7 @@ extension DetailViewController: CLLocationManagerDelegate {
     
     // Handle location manager errors.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        locationManager.stopUpdatingLocation()
+        //        locationManager.stopUpdatingLocation()
         print("Error: \(error)")
     }
     
