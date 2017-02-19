@@ -49,7 +49,7 @@ class DetailViewController: UIViewController, CellTitled {
         
         setupViewHierarchy()
         configureConstraints()
-
+        
         placesClient = GMSPlacesClient.shared()
     }
     
@@ -57,7 +57,7 @@ class DetailViewController: UIViewController, CellTitled {
         super.viewDidAppear(animated)
 //        test()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -150,7 +150,7 @@ extension DetailViewController: CLLocationManagerDelegate {
     
     // Handle location manager errors.
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        locationManager.stopUpdatingLocation()
+        //        locationManager.stopUpdatingLocation()
         print("Error: \(error)")
     }
     
