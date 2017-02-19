@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct JobCenter {
-    
+class JobCenter: ResourcesTable {
+    let type = "job"
     let borough: String
     let city: String
     let facilityName: String
@@ -29,7 +29,7 @@ struct JobCenter {
         self.zipCode = zipCode
     }
     
-    init?(dictionary: [String: Any]){
+    convenience init?(dictionary: [String: Any]){
         guard let borough = dictionary["borough"] as? String,
             let city = dictionary["city"] as? String,
             let facilityName = dictionary["facility_name"] as? String,

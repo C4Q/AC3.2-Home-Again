@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct FoodStamp {
-    
+struct FoodStamp: ResourcesTable {
+    let type = "foodstamp"
     var borough: String
     var city: String
     var facilityName: String

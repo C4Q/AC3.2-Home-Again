@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct DropInCenter {
-    
+struct DropInCenter: ResourcesTable {
+    let type = "shelter"
     let borough: String
     let facilityName: String
     let hoursOfOperation: String

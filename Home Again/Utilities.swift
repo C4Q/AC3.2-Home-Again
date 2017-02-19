@@ -14,6 +14,13 @@ protocol CellTitled {
     var titleForCell: String { get }
 }
 
+protocol ResourcesTable {
+    var borough: String { get }
+    var facilityName: String { get }
+    var facilityAddress: String { get }
+    var type: String { get }
+}
+
 // Colors
 struct ColorPalette {
     static let darkestBlue: UIColor = UIColor(red: 22/255, green: 87/255, blue: 109/255, alpha:1.0)
