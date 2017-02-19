@@ -14,6 +14,7 @@ protocol CellTitled {
     var titleForCell: String { get }
 }
 
+// Model Objects
 protocol ResourcesTable {
     var borough: String { get }
     var facilityName: String { get }
@@ -59,7 +60,7 @@ public enum Resource: String {
         case "Job Centers":
             return "https://data.cityofnewyork.us/resource/9ri9-nbz5.json"
         default:
-            return ""
+            return "https://data.cityofnewyork.us/resource/feuq-due4.json"
         }
     }
     
