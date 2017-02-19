@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13B1929F9730D65C6D272998 /* Pods_Home_Again.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F643AA35303740DD8367A7 /* Pods_Home_Again.framework */; };
+		283FCE271E591C6F00CA2861 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FCE261E591C6F00CA2861 /* Distance.swift */; };
 		47FCDAC51E57A7D000B628DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAC41E57A7D000B628DA /* AppDelegate.swift */; };
 		47FCDACC1E57A7D000B628DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FCDACB1E57A7D000B628DA /* Assets.xcassets */; };
 		47FCDACF1E57A7D000B628DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FCDACD1E57A7D000B628DA /* LaunchScreen.storyboard */; };
@@ -20,12 +22,12 @@
 		47FCDAEA1E57B84C00B628DA /* JobCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAE91E57B84C00B628DA /* JobCenter.swift */; };
 		47FCDAEC1E57B85900B628DA /* FoodStampCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */; };
 		47FCDAEE1E57B8BB00B628DA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAED1E57B8BB00B628DA /* Utilities.swift */; };
-		C856A6A510E1B004B3205144 /* Pods_Home_Again.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147471F607978A0285FB62A4 /* Pods_Home_Again.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		147471F607978A0285FB62A4 /* Pods_Home_Again.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_Again.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D6E15B5634E10A2833135D7 /* Pods-Home Again.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.debug.xcconfig"; sourceTree = "<group>"; };
+		0AECD5F5FD7FAF9189209B83 /* Pods-Home Again.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.debug.xcconfig"; sourceTree = "<group>"; };
+		2440437A879E0986FDC689FA /* Pods-Home Again.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.release.xcconfig"; sourceTree = "<group>"; };
+		283FCE261E591C6F00CA2861 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
 		47FCDAC11E57A7D000B628DA /* Home Again.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Again.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FCDAC41E57A7D000B628DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FCDACB1E57A7D000B628DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,7 +43,7 @@
 		47FCDAE91E57B84C00B628DA /* JobCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobCenter.swift; sourceTree = "<group>"; };
 		47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodStampCenter.swift; sourceTree = "<group>"; };
 		47FCDAED1E57B8BB00B628DA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		66456526FB20F69D425A48B0 /* Pods-Home Again.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.release.xcconfig"; sourceTree = "<group>"; };
+		B9F643AA35303740DD8367A7 /* Pods_Home_Again.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Home_Again.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C856A6A510E1B004B3205144 /* Pods_Home_Again.framework in Frameworks */,
+				13B1929F9730D65C6D272998 /* Pods_Home_Again.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,8 +63,8 @@
 			children = (
 				47FCDAC31E57A7D000B628DA /* Home Again */,
 				47FCDAC21E57A7D000B628DA /* Products */,
-				5A3F7F7680633B3F6FC29C32 /* Pods */,
-				FF74626F06F687194FA9569F /* Frameworks */,
+				6DA310988B657223695A0CF9 /* Pods */,
+				7762260F9D4AF566E9F6FB31 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,6 +124,7 @@
 				47FCDAE71E57B84100B628DA /* DropInCenter.swift */,
 				47FCDAE91E57B84C00B628DA /* JobCenter.swift */,
 				47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */,
+				283FCE261E591C6F00CA2861 /* Distance.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -135,19 +138,19 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		5A3F7F7680633B3F6FC29C32 /* Pods */ = {
+		6DA310988B657223695A0CF9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2D6E15B5634E10A2833135D7 /* Pods-Home Again.debug.xcconfig */,
-				66456526FB20F69D425A48B0 /* Pods-Home Again.release.xcconfig */,
+				0AECD5F5FD7FAF9189209B83 /* Pods-Home Again.debug.xcconfig */,
+				2440437A879E0986FDC689FA /* Pods-Home Again.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FF74626F06F687194FA9569F /* Frameworks */ = {
+		7762260F9D4AF566E9F6FB31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				147471F607978A0285FB62A4 /* Pods_Home_Again.framework */,
+				B9F643AA35303740DD8367A7 /* Pods_Home_Again.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -159,12 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47FCDAD31E57A7D000B628DA /* Build configuration list for PBXNativeTarget "Home Again" */;
 			buildPhases = (
-				03661EEB4B86921043C50A23 /* [CP] Check Pods Manifest.lock */,
+				60B9991F2D750C043AB9505B /* [CP] Check Pods Manifest.lock */,
 				47FCDABD1E57A7D000B628DA /* Sources */,
 				47FCDABE1E57A7D000B628DA /* Frameworks */,
 				47FCDABF1E57A7D000B628DA /* Resources */,
-				8F461DAC6010A9A87ACB5D27 /* [CP] Embed Pods Frameworks */,
-				40B4A711B0F19D8D10CBE97D /* [CP] Copy Pods Resources */,
+				36255F3A8B0E0266E247E867 /* [CP] Embed Pods Frameworks */,
+				2C0F802BE82ADC67C1C5FF58 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -222,22 +225,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03661EEB4B86921043C50A23 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		40B4A711B0F19D8D10CBE97D /* [CP] Copy Pods Resources */ = {
+		2C0F802BE82ADC67C1C5FF58 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,7 +240,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Home Again/Pods-Home Again-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8F461DAC6010A9A87ACB5D27 /* [CP] Embed Pods Frameworks */ = {
+		36255F3A8B0E0266E247E867 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -267,6 +255,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Home Again/Pods-Home Again-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		60B9991F2D750C043AB9505B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				283FCE271E591C6F00CA2861 /* Distance.swift in Sources */,
 				47FCDAD71E57B32400B628DA /* APIRequestManager.swift in Sources */,
 				47FCDAC51E57A7D000B628DA /* AppDelegate.swift in Sources */,
 				47FCDAEE1E57B8BB00B628DA /* Utilities.swift in Sources */,
@@ -397,7 +401,7 @@
 		};
 		47FCDAD41E57A7D000B628DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D6E15B5634E10A2833135D7 /* Pods-Home Again.debug.xcconfig */;
+			baseConfigurationReference = 0AECD5F5FD7FAF9189209B83 /* Pods-Home Again.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Home Again/Info.plist";
@@ -410,7 +414,7 @@
 		};
 		47FCDAD51E57A7D000B628DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66456526FB20F69D425A48B0 /* Pods-Home Again.release.xcconfig */;
+			baseConfigurationReference = 2440437A879E0986FDC689FA /* Pods-Home Again.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Home Again/Info.plist";

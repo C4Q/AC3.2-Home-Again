@@ -13,7 +13,9 @@ import GoogleMaps
 import GooglePlaces
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CellTitled {
-
+    
+    var distance = [Distance]()
+    
     // MARK: - Properties
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -39,6 +41,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         getData()
         // Google Maps Setup
         setupMaps()
+        // get Distance
+        apicall()
         
         setupViewHierarchy()
         configureConstraints()
@@ -150,11 +154,31 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
+    //MARK: - DISTANCE
+    
+    func apicall() {
+        
+        print("helllo")
+        let there = "2402 Atlantic Ave, Brooklyn, NY"
+        let here = "31-00 47th Ave, Long Island City, NY"
+        let googleGeoAPIEndPoint = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=\(here)&destinations=\(there)&key=AIzaSyDzelqdk1T1ZFytQavZwrpSTYw6pvZDTek"
+        let myEndpoint = googleGeoAPIEndPoint.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+
+        APIRequestManager.manager.getData(endPoint: myEndpoint!) { (data) in
+            if let validData = data,
+                let theDistance = Distance.getDistance(data: validData) {
+                self.distance = theDistance
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DetailTableViewCell
-
-        //TODO: - DISTANCE
+        
+    
         switch resource {
         case .shelter:
             
@@ -245,7 +269,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        
     }
     
     // MARK: - Lazy Instantiate

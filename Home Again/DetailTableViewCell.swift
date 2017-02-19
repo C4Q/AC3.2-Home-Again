@@ -9,7 +9,6 @@
 import UIKit
 
 class DetailTableViewCell: UITableViewCell {
-
     var facilityName = UILabel()
     var facilityAddress = UILabel()
     var facilityDistance = UILabel()
@@ -43,7 +42,7 @@ class DetailTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Cell Setup
     internal func setHierarchyAndConstraintsOf(name: UILabel, address: UILabel, distance: UILabel, to cell: UIView) {
         
