@@ -8,22 +8,29 @@
 
 import UIKit
 
-class HomeAgainViewController: UITableViewController, CellTitled {
+class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CellTitled {
 
     // MARK: - Properties
     let titleForCell = "Home Again"
     let cellIdentifier: String = "HomeCellIdentifier"
 
-    
+    // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViewHierarchy()
+        tableView.dataSource = self
+        tableView.delegate = self
         self.tableView.rowHeight = 250.0
         
         self.tableView.register(HomeAgainTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         self.navigationItem.title = titleForCell
     
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        configureConstraints()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,24 +38,46 @@ class HomeAgainViewController: UITableViewController, CellTitled {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Setup View Hierarchy & Constraints
     func setupViewHierarchy() {
         self.edgesForExtendedLayout = []
         
         navigationController?.navigationBar.backgroundColor = ColorPalette.darkestBlue
         navigationController?.navigationBar.barTintColor = ColorPalette.darkestBlue
         self.view.backgroundColor = ColorPalette.darkBlue
+        
+        view.addSubview(tableView)
+        view.addSubview(crisisView)
+        crisisView.addSubview(crisisLabel)
     }
-
+    
+    func configureConstraints() {
+        
+        tableView.snp.makeConstraints { (make) in
+            make.leading.top.trailing.bottom.equalToSuperview()
+        }
+        
+        crisisView.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(100.0)
+        }
+        
+        crisisLabel.snp.makeConstraints { (make) in
+            make.centerY.equalTo(crisisView)
+            make.leading.equalTo(crisisView).offset(16.0)
+        }
+    }
+    
     // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return Resource.numberOfResourceSections()
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! HomeAgainTableViewCell
         
         switch indexPath.section {
@@ -65,12 +94,12 @@ class HomeAgainViewController: UITableViewController, CellTitled {
             cell.sectionLabel.text = "Libraries"
         }
         cell.backgroundColor = .black
-//        cell.newLabel.font = UIFont(name: "Optima-Bold", size: 24.0)
+
         cell.selectionStyle = .none
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = DetailViewController()
         detailVC.titleForCell = Resource.sections[indexPath.section]
         detailVC.resource = Resource(rawValue: Resource.sections[indexPath.section])
@@ -81,5 +110,38 @@ class HomeAgainViewController: UITableViewController, CellTitled {
         navigationItem.backBarButtonItem = backItem
     }
 
+    // MARK: - Lazy Instantiate
+    lazy var tableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
+    
+    lazy var crisisView: UIView = {
+        let view = UIView()
+        let darkRed = UIColor(red: 158/255, green: 9/255, blue: 28/255, alpha: 1.0)
+        view.backgroundColor = darkRed
+        view.layer.cornerRadius = 10.0
+        return view
+    }()
+    
+    lazy var crisisLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 3
+        
+        let myAttribute = [ NSFontAttributeName: UIFont.systemFont(ofSize: 18.0),
+                            NSForegroundColorAttributeName: UIColor.gray]
+        
+        let myString = NSMutableAttributedString(string: "In CRISIS?\nPress Button to talk\nto a counselor now.", attributes: myAttribute )
+        
+        var buttonRange = (myString.string as NSString).range(of: "CRISIS?")
+        myString.addAttribute(NSFontAttributeName, value: UIFont.italicSystemFont(ofSize: 18.0), range: buttonRange)
+        
+        buttonRange = (myString.string as NSString).range(of: "Press Button")
+        myString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: buttonRange)
+        
+        label.attributedText = myString
+        
+        return label
+    }()
 
 }
