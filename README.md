@@ -11,19 +11,19 @@ Click on the Home Again "key" icon on your iPhone to begin using Home Again.
 
 This will take you to a list of categories of resources you may need to access:
 
--**Shelter**
+- **Shelter**
 
 Takes you to a list of drop-in shelters separated by borough.
 
--**Food Stamps**
+- **Food Stamps**
 
 Takes you to a list of offices that can help you sign-up for SNAP.
 
--**Internet**
+- **Internet**
 
 Takes you to a list of libraries in the five boroughs which provide free wireless Internet.
 
--**Job Centers**
+- **Job Centers**
 
 A list of the five job centers in NYC that can provide assistance with finding employment, Medicaid, SNAP, etc. 
 
