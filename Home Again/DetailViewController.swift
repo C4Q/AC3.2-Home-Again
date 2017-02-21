@@ -12,7 +12,13 @@ import SnapKit
 import GoogleMaps
 import GooglePlaces
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CellTitled {
+
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CellTitled{
+    
+    
+    
+    
+   
     
     // MARK: - Properties
     var locationManager = CLLocationManager()
@@ -30,10 +36,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var resources = [ResourcesTable]()
     
+    
+    
+   
+    
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         // API Call
         getData()
         // Google Maps Setup
@@ -43,6 +53,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         configureConstraints()
         
         placesClient = GMSPlacesClient.shared()
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +76,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.addSubview(mapView)
         view.addSubview(tableView)
         view.addSubview(backToTable)
+        view.addSubview(applyNowView)
+        applyNowView.addSubview(applyButton)
         backToTable.addSubview(backToImage)
         
         tableView.dataSource = self
@@ -74,6 +88,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         backToTable.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bringBackTable)))
         backToImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bringBackTable)))
+        
+        
+        applyButton.addTarget(self, action: #selector(applyNowTapped), for: .touchUpInside)
+        
     }
     
     func configureConstraints() {
@@ -97,6 +115,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             make.height.width.equalTo(backToTable).multipliedBy(0.5)
             make.center.equalTo(backToTable)
         }
+        
+        
+        applyNowView.snp.makeConstraints { (make) in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(80.0)
+        }
+        
+        applyButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(applyNowView)
+            make.centerX.equalTo(applyNowView)
+
+            make.height.equalTo(applyNowView).multipliedBy(0.5)
+            make.width.equalTo(applyNowView).multipliedBy(0.5)
+        }
+        
+        
     }
     
     // MARK: - API Call
@@ -110,6 +144,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.resources = DropInCenter.getDropInCenters(from: data)
             case .foodstamp:
                 self.resources = FoodStamp.getFoodStamps(from: data)
+                self.applyNowView.isHidden = false
+                self.applyButton.isHidden = false
             case .jobs:
                 self.resources = JobCenter.getJobCenters(from: data)
             default:
@@ -305,6 +341,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func applyNowTapped() {
+        
+        navigationController?.pushViewController(WebViewController(), animated: true)
+    }
+    
+    
+    
     // MARK: - Lazy Instantiate
     lazy var tableView: UITableView = {
         let table = UITableView()
@@ -332,6 +375,36 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         image.backgroundColor = .clear
         return image
     }()
+    
+    lazy var applyNowView: UIView = {
+        let view = UIView()
+        let darkRed = ColorPalette.darkestBlue
+        view.backgroundColor = darkRed
+        view.layer.cornerRadius = 10.0
+        view.isHidden = true
+        return view
+    }()
+    
+    
+    lazy var applyButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 7.0
+        
+        let darkRed = UIColor(red: 158/255, green: 9/255, blue: 28/255, alpha: 1.0)
+        
+        let myAttribute = [ NSForegroundColorAttributeName: darkRed ]
+        let myString = NSMutableAttributedString(string: "APPLY ONLINE", attributes: myAttribute)
+        
+        var buttonRange = (myString.string as NSString).range(of: "")
+        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 18.0), range: buttonRange)
+        
+        button.setAttributedTitle(myString, for: .normal)
+        button.isHidden = true
+        return button
+    }()
+    
+    
 }
 
 // MARK: - Delegates to handle events for the location manager.
