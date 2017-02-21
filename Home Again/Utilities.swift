@@ -14,6 +14,14 @@ protocol CellTitled {
     var titleForCell: String { get }
 }
 
+// Model Objects
+protocol ResourcesTable {
+    var borough: String { get }
+    var facilityName: String { get }
+    var facilityAddress: String { get }
+    var type: String { get }
+}
+
 // Colors
 struct ColorPalette {
     static let darkestBlue: UIColor = UIColor(red: 22/255, green: 87/255, blue: 109/255, alpha:1.0)
@@ -52,7 +60,7 @@ public enum Resource: String {
         case "Job Centers":
             return "https://data.cityofnewyork.us/resource/9ri9-nbz5.json"
         default:
-            return ""
+            return "https://data.cityofnewyork.us/resource/feuq-due4.json"
         }
     }
     

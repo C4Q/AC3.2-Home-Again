@@ -6,7 +6,7 @@ target 'Home Again' do
   use_frameworks!
 
   # Pods for Home Again
-  pod ‘SnapKit’
+  pod ‘SnapKit’, :git => 'https://github.com/SnapKit/SnapKit.git', :branch => 'develop'
   pod ‘GoogleMaps’
   pod ‘GooglePlaces’
 

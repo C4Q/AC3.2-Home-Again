@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +17,48 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home_Again_no_sparkles_large" translatesAutoresizingMaskIntoConstraints="NO" id="gSd-1F-GJ9">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="ivY-Nf-ETT"/>
+                                    <constraint firstAttribute="width" constant="150" id="sqK-GK-mNG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FV5-vh-C2l">
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Again" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDn-IP-oad">
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A second chance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92x-H7-Amq">
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.086274509803921567" green="0.3411764705882353" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DDn-IP-oad" firstAttribute="centerY" secondItem="gSd-1F-GJ9" secondAttribute="centerY" id="9Jd-Nu-hI0"/>
+                            <constraint firstItem="gSd-1F-GJ9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9MO-HZ-I3q"/>
+                            <constraint firstItem="gSd-1F-GJ9" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="100" id="Ukv-6K-mqn"/>
+                            <constraint firstItem="FV5-vh-C2l" firstAttribute="centerY" secondItem="gSd-1F-GJ9" secondAttribute="centerY" id="cD8-R6-Bbd"/>
+                            <constraint firstItem="DDn-IP-oad" firstAttribute="leading" secondItem="gSd-1F-GJ9" secondAttribute="trailing" constant="8" id="k28-VH-3Fx"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="92x-H7-Amq" secondAttribute="bottom" constant="100" id="kiF-K3-S3Y"/>
+                            <constraint firstItem="gSd-1F-GJ9" firstAttribute="leading" secondItem="FV5-vh-C2l" secondAttribute="trailing" constant="8" id="l6s-or-xcT"/>
+                            <constraint firstItem="92x-H7-Amq" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="xL8-Zi-Izy"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Home_Again_no_sparkles_large" width="1024" height="1024"/>
+    </resources>
 </document>
