@@ -25,12 +25,17 @@ class DetailTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         facilityName.textColor = .black
         facilityName.font = UIFont.systemFont(ofSize: 20.0)
         facilityAddress.numberOfLines = 0
+        
         
         
         // Adding new overlay

@@ -20,6 +20,7 @@ protocol ResourcesTable {
     var facilityName: String { get }
     var facilityAddress: String { get }
     var type: String { get }
+    var zipCode: String { get }
 }
 
 // Colors

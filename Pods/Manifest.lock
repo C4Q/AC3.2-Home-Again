@@ -11,13 +11,23 @@ PODS:
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
-  - SnapKit
+  - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `develop`)
+
+EXTERNAL SOURCES:
+  SnapKit:
+    :branch: develop
+    :git: https://github.com/SnapKit/SnapKit.git
+
+CHECKOUT OPTIONS:
+  SnapKit:
+    :commit: be172a3f0f2b0e59c8e5d6767421f8758f21c3dc
+    :git: https://github.com/SnapKit/SnapKit.git
 
 SPEC CHECKSUMS:
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  SnapKit: c71c530b73cedd2a8b998098687001baff265086
 
-PODFILE CHECKSUM: 414c605215d889303f16289112c3a5336d52e86d
+PODFILE CHECKSUM: 73e3f84d5c21595867aed56dddfefc39c09a900d
 
 COCOAPODS: 1.1.1

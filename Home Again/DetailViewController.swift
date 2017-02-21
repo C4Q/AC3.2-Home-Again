@@ -51,7 +51,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Setup View Hierarchy & Constraints
@@ -157,31 +156,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let borough = Resource.boroughs[section]
         
         return resources.filter { $0.borough == borough }.count
-        
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! DetailTableViewCell
         
-        //TODO: - DISTANCE
-        switch indexPath.section {
-        case 0:
-            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[0] }[indexPath.row].facilityName
-            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[0] }[indexPath.row].facilityAddress
-        case 1:
-            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[1] }[indexPath.row].facilityName
-            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[1] }[indexPath.row].facilityAddress
-        case 2:
-            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[2] }[indexPath.row].facilityName
-            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[2] }[indexPath.row].facilityAddress
-        case 3:
-            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[3] }[indexPath.row].facilityName
-            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[3] }[indexPath.row].facilityAddress
-        default:
-            cell.facilityName.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityName
-            cell.facilityAddress.text = resources.filter { $0.borough == Resource.boroughs[4] }[indexPath.row].facilityAddress
-        }
+        let borough = Resource.boroughs[indexPath.section]
+        
+        cell.facilityName.text = resources.filter { $0.borough == borough }[indexPath.row].facilityName
+        cell.facilityAddress.text = resources.filter { $0.borough == borough }[indexPath.row].facilityAddress
         
         cell.contentView.backgroundColor = ColorPalette.darkBlue
         
@@ -281,6 +264,52 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     }
+    
+    
+    // MARK: - Distance API & Math: km -> mi
+    func hasZipCode() -> Bool {
+        if let _ = resources as? [DropInCenter] {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    //TODO: Put API Call in cellforrowat
+    func distanceCalculator(_ destinationCode: String) -> String {
+        let endpoint = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=11101&destinations=\(destinationCode)&key=AIzaSyCr0nrxJjMdT9FyVz0kbEktub6uQtkg6Uw"
+        
+        var distance: String?
+        APIRequestManager.manager.getData(endPoint: endpoint, callback: { (data) in
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
+                guard let dict = jsonData as? [String: AnyObject],
+                    let rows = dict["rows"] as? [[String: AnyObject]],
+                    let elements = rows[0]["elements"] as? [[String: AnyObject]],
+                    let element = elements[0]["distance"] as? [String: AnyObject],
+                    let validDistance = element["text"] as? String else { return }
+                
+                distance = String(self.kmToMi(km: validDistance))
+            }
+            catch {
+                print("Error on do-catch block)")
+            }
+            
+        })
+        
+        return distance ?? ""
+    }
+    
+    func kmToMi(km: String) -> Double {
+        var km = km.components(separatedBy: " ")
+        guard let kmD = Double(km[0]) else { return 0 }
+        let roundUp = kmD * 0.62
+        return round(100.0 * roundUp) / 100.0
+    }
+    
     
     // MARK: - Actions
     func bringBackTable() {
