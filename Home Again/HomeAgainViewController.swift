@@ -68,14 +68,14 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         
         crisisLabel.snp.makeConstraints { (make) in
             make.centerY.equalTo(crisisView)
-            make.leading.equalTo(crisisView).offset(16.0)
+            make.leading.equalTo(crisisView).offset(12.0)
         }
         
         crisisButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(crisisView)
-            make.trailing.equalTo(crisisView).inset(16.0)
+            make.trailing.equalTo(crisisView).inset(12.0)
             make.height.equalTo(crisisView).multipliedBy(0.5)
-            make.width.equalTo(crisisView).multipliedBy(0.5)
+            make.width.equalTo(crisisView).multipliedBy(0.55)
         }
     }
     
@@ -147,20 +147,20 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         let label = UILabel()
         label.numberOfLines = 3
         
-        let myAttribute = [ NSFontAttributeName: UIFont.systemFont(ofSize: 16.0),
+        let myAttribute = [ NSFontAttributeName: UIFont.systemFont(ofSize: 14.0),
                             NSForegroundColorAttributeName: UIColor.gray]
         
         let myString = NSMutableAttributedString(string: "In CRISIS?\nPress Button to talk\nto a counselor now.", attributes: myAttribute )
         
         var buttonRange = (myString.string as NSString).range(of: "In CRISIS?")
-        myString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 18.0), range: buttonRange)
+        myString.addAttribute(NSFontAttributeName, value: UIFont.systemFont(ofSize: 16.0), range: buttonRange)
         
         buttonRange = (myString.string as NSString).range(of: "CRISIS?")
-        myString.addAttribute(NSFontAttributeName, value: UIFont.italicSystemFont(ofSize: 18.0), range: buttonRange)
+        myString.addAttribute(NSFontAttributeName, value: UIFont.italicSystemFont(ofSize: 16.0), range: buttonRange)
         
         buttonRange = (myString.string as NSString).range(of: "Press Button")
         myString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: buttonRange)
-        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 16.0), range: buttonRange)
+        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 14.0), range: buttonRange)
         
         label.attributedText = myString
         
@@ -178,7 +178,7 @@ class HomeAgainViewController: UIViewController, UITableViewDataSource, UITableV
         let myString = NSMutableAttributedString(string: "1-888-NYC-WELL (free)", attributes: myAttribute)
         
         var buttonRange = (myString.string as NSString).range(of: "1-888-NYC-WELL")
-        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 18.0), range: buttonRange)
+        myString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 16.0), range: buttonRange)
         
         button.setAttributedTitle(myString, for: .normal)
         return button

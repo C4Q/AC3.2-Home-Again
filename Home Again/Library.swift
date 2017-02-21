@@ -17,7 +17,7 @@ struct Library: ResourcesTable {
     let streetAddress: String
     let system: String
     let url: String
-    let zip: String
+    let zipCode: String
     let latitude: Double
     let longitude: Double
     let facilityAddress: String
@@ -30,7 +30,7 @@ struct Library: ResourcesTable {
         self.streetAddress = streetAddress
         self.system = system
         self.url = url
-        self.zip = zip
+        self.zipCode = zip
         self.latitude = latitude
         self.longitude = longitude
         self.facilityAddress = houseNumber + " " + streetAddress
@@ -60,7 +60,7 @@ struct Library: ResourcesTable {
         
         do {
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
-            dump(jsonData)
+            
             guard let jsonArray = jsonData as? [[String: AnyObject]] else { return [] }
             
             for dictionary in jsonArray {
