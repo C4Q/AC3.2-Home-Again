@@ -17,7 +17,7 @@ Takes you to a list of drop-in shelters separated by borough.
 
 - **Food Stamps**
 
-Takes you to a list of offices that can help you sign-up for SNAP.
+Takes you to a list of offices that can help you sign-up for SNAP. There is also a button to apply for SNAP online at the bottom of the screen.
 
 - **Internet**
 
