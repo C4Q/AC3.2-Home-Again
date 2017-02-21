@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:LaunchPageViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:Home Again.xcodeproj">
    </FileRef>
    <FileRef

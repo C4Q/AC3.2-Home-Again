@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		13B1929F9730D65C6D272998 /* Pods_Home_Again.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F643AA35303740DD8367A7 /* Pods_Home_Again.framework */; };
-		283FCE271E591C6F00CA2861 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FCE261E591C6F00CA2861 /* Distance.swift */; };
+		283FCE2B1E5A48FA00CA2861 /* LaunchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FCE2A1E5A48FA00CA2861 /* LaunchPageViewController.swift */; };
 		47FCDAC51E57A7D000B628DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAC41E57A7D000B628DA /* AppDelegate.swift */; };
 		47FCDACC1E57A7D000B628DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47FCDACB1E57A7D000B628DA /* Assets.xcassets */; };
 		47FCDACF1E57A7D000B628DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47FCDACD1E57A7D000B628DA /* LaunchScreen.storyboard */; };
@@ -27,7 +27,7 @@
 /* Begin PBXFileReference section */
 		0AECD5F5FD7FAF9189209B83 /* Pods-Home Again.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.debug.xcconfig"; sourceTree = "<group>"; };
 		2440437A879E0986FDC689FA /* Pods-Home Again.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.release.xcconfig"; sourceTree = "<group>"; };
-		283FCE261E591C6F00CA2861 /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		283FCE2A1E5A48FA00CA2861 /* LaunchPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPageViewController.swift; sourceTree = "<group>"; };
 		47FCDAC11E57A7D000B628DA /* Home Again.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Home Again.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47FCDAC41E57A7D000B628DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47FCDACB1E57A7D000B628DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +113,7 @@
 			children = (
 				47FCDADA1E57B55100B628DA /* HomeAgainViewController.swift */,
 				47FCDADD1E57B59000B628DA /* DetailViewController.swift */,
+				283FCE2A1E5A48FA00CA2861 /* LaunchPageViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -124,7 +125,6 @@
 				47FCDAE71E57B84100B628DA /* DropInCenter.swift */,
 				47FCDAE91E57B84C00B628DA /* JobCenter.swift */,
 				47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */,
-				283FCE261E591C6F00CA2861 /* Distance.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -277,11 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				283FCE271E591C6F00CA2861 /* Distance.swift in Sources */,
 				47FCDAD71E57B32400B628DA /* APIRequestManager.swift in Sources */,
 				47FCDAC51E57A7D000B628DA /* AppDelegate.swift in Sources */,
 				47FCDAEE1E57B8BB00B628DA /* Utilities.swift in Sources */,
 				47FCDAE81E57B84100B628DA /* DropInCenter.swift in Sources */,
+				283FCE2B1E5A48FA00CA2861 /* LaunchPageViewController.swift in Sources */,
 				47FCDAE61E57B82600B628DA /* DetailTableViewCell.swift in Sources */,
 				47FCDAE01E57B7F600B628DA /* Library.swift in Sources */,
 				47FCDADB1E57B55100B628DA /* HomeAgainViewController.swift in Sources */,
