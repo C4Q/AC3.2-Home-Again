@@ -21,6 +21,7 @@
 		47FCDAEC1E57B85900B628DA /* FoodStampCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */; };
 		47FCDAEE1E57B8BB00B628DA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FCDAED1E57B8BB00B628DA /* Utilities.swift */; };
 		C856A6A510E1B004B3205144 /* Pods_Home_Again.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 147471F607978A0285FB62A4 /* Pods_Home_Again.framework */; };
+		DF34C8421E5CA67600A5425E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF34C8411E5CA67600A5425E /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		47FCDAEB1E57B85900B628DA /* FoodStampCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodStampCenter.swift; sourceTree = "<group>"; };
 		47FCDAED1E57B8BB00B628DA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		66456526FB20F69D425A48B0 /* Pods-Home Again.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Home Again.release.xcconfig"; path = "Pods/Target Support Files/Pods-Home Again/Pods-Home Again.release.xcconfig"; sourceTree = "<group>"; };
+		DF34C8411E5CA67600A5425E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				47FCDADA1E57B55100B628DA /* HomeAgainViewController.swift */,
 				47FCDADD1E57B59000B628DA /* DetailViewController.swift */,
+				DF34C8411E5CA67600A5425E /* WebViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				47FCDAEA1E57B84C00B628DA /* JobCenter.swift in Sources */,
 				47FCDADE1E57B59000B628DA /* DetailViewController.swift in Sources */,
 				47FCDAEC1E57B85900B628DA /* FoodStampCenter.swift in Sources */,
+				DF34C8421E5CA67600A5425E /* WebViewController.swift in Sources */,
 				47FCDAE31E57B81000B628DA /* HomeAgainTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
