@@ -15,11 +15,6 @@ import GooglePlaces
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CellTitled{
     
-    
-    
-    
-   
-    
     // MARK: - Properties
     var locationManager = CLLocationManager()
     var currentLocation: CLLocation?
@@ -35,10 +30,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var animator: UIViewPropertyAnimator?
     
     var resources = [ResourcesTable]()
-    
-    
-    
-   
+
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -53,8 +45,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         configureConstraints()
         
         placesClient = GMSPlacesClient.shared()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -170,7 +160,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                               longitude: -73.935365,
                                               zoom: 18)
         self.mapView = GMSMapView.map(withFrame: .zero, camera: camera)
-        
     }
     
     func updateCurrentPositionMarker(currentLocation: CLLocation) {
@@ -299,6 +288,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error)
             }
         }
+        applyNowView.isHidden = true
     }
     
     
@@ -368,10 +358,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
         animator?.startAnimation()
         
+        if let _ = resources as? [FoodStamp] {
+            applyNowView.isHidden = false
+        }
+        
     }
     
     func applyNowTapped() {
-        
         navigationController?.pushViewController(WebViewController(), animated: true)
     }
     
