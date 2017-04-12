@@ -1,5 +1,4 @@
 # AC3.2-Home-Again
-A Weekend Hackathon Product
 ## Welcome to
 # Home Again
 
